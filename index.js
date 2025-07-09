@@ -1,11 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
+const path = require('path'); // 🟢 Adicione isso!
 const app = express();
 const PORT = process.env.PORT || 3000;
-const FILE = 'data.json';
 
-// Criar arquivo se não existir (Render fix
+// 🟢 Garante caminho absoluto pro data.json no servidor do Render
+const FILE = path.join(__dirname, 'data.json');
+
+// 🟢 Cria o data.json se não existir
 if (!fs.existsSync(FILE)) {
   fs.writeFileSync(FILE, JSON.stringify({
     pessoas: [],
@@ -13,6 +16,7 @@ if (!fs.existsSync(FILE)) {
     locais: []
   }, null, 2));
 }
+
 
 app.use(cors());
 app.use(express.json());
