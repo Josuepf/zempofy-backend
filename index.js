@@ -5,6 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const FILE = 'data.json';
 
+// Criar arquivo se não existir (Render fix
 if (!fs.existsSync(FILE)) {
   fs.writeFileSync(FILE, JSON.stringify({
     pessoas: [],
