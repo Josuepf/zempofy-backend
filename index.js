@@ -5,6 +5,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const FILE = 'data.json';
 
+if (!fs.existsSync(FILE)) {
+  fs.writeFileSync(FILE, JSON.stringify({
+    pessoas: [],
+    tarefasFeitas: [],
+    locais: []
+  }, null, 2));
+}
+
 app.use(cors());
 app.use(express.json());
 
