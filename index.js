@@ -18,15 +18,15 @@ if (!fs.existsSync(FILE)) {
 }
 
 
-app.use(cors());
-app.use(express.json());
-
 app.get('/api/tarefas', (req, res) => {
-    fs.readFile(FILE, 'utf8', (err, data) => {
-      if (err) return res.status(500).json({ erro: 'Erro ao ler arquivo' });
-      res.json(JSON.parse(data));
-    });
-  });  
+  fs.readFile(FILE, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Erro ao ler o arquivo:', err); // 🟢 Adicione isso!
+      return res.status(500).json({ erro: 'Erro ao ler arquivo' });
+    }
+    res.json(JSON.parse(data));
+  });
+});
 
   app.post('/api/tarefas', (req, res) => {
     fs.writeFile(FILE, JSON.stringify(req.body, null, 2), err => {
