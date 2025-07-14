@@ -7,6 +7,9 @@ let dados = {
 let tipoUsuario = null;
 let pessoaAtiva = null;
 
+const BASE_URL = 'https://zempofy-backend.onrender.com';
+
+
 async function entrarComo(tipo) {
   await carregarDados();
   tipoUsuario = tipo;
@@ -479,7 +482,8 @@ function excluirTarefaAgenda(data, index) {
 
 async function salvarDados() {
   try {
-    const resposta = await fetch('/api/tarefas', {
+    const resposta = await fetch(`${BASE_URL}/api/tarefas`, {
+
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dados)
@@ -494,7 +498,8 @@ async function salvarDados() {
 }
 
 async function carregarDados() {
-  const res = await fetch('/api/tarefas');
+  const res = await fetch(`${BASE_URL}/api/tarefas`);
+
   const json = await res.json();
   dados = json;
 }
