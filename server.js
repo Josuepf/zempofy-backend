@@ -7,6 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());  // <- libera CORS
+console.log('✅ CORS ativado');
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../frontend')));
 
@@ -49,5 +50,5 @@ app.post('/api/tarefas', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
