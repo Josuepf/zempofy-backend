@@ -4,13 +4,14 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-app.use(cors());  // <- libera CORS
-console.log('✅ CORS ativado');
+// ✅ CONFIGURAÇÃO DE CORS CORRETA:
+app.use(cors({
+  origin: 'https://zempofy-frontend.onrender.com'
+}));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../frontend')));
 
+const PORT = process.env.PORT || 3000;
 // Funções de leitura e gravação do arquivo
 function lerDados() {
     if (!fs.existsSync(DATA_FILE)) {
